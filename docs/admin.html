@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | AUTO GEAR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><span class="logo-accent">AUTO</span> GEAR</a>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="products.html" class="nav-link">Catalog</a>
+                <a href="cart.html" class="nav-link">Cart <span id="cart-badge" class="cart-pill">0</span></a>
+                <a href="admin.html" class="nav-link active">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- 1. Admin Authentication View (shown when logged out) -->
+        <section id="admin-login-view" class="admin-login-wrapper">
+            <div class="login-card">
+                <h2>ADMINISTRATOR LOGIN</h2>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; text-align: center; margin-bottom: 1.5rem;">
+                    Sign in with authorized administrator credentials.
+                </p>
+                <form id="admin-login-form">
+                    <div class="form-group">
+                        <label for="admin-user">Username</label>
+                        <input type="text" id="admin-user" class="form-control" placeholder="admin" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-pass">Password</label>
+                        <input type="password" id="admin-pass" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                        Sign In to Dashboard &rarr;
+                    </button>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem;">
+                        Default setup: username <code>admin</code> / password <code>admin123</code>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- 2. Admin Dashboard View (shown when logged in) -->
+        <section id="admin-dashboard-view" style="display: none;">
+            <!-- Admin Top Bar -->
+            <div class="admin-header">
+                <div>
+                    <h1>Management Dashboard</h1>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                        Logged in as <strong id="admin-current-user" style="color: var(--accent-primary);">admin</strong>
+                    </p>
+                </div>
+                <div style="display: flex; gap: 0.75rem;">
+                    <button id="btn-refresh-admin" class="btn btn-secondary btn-sm">Refresh Data</button>
+                    <button id="btn-admin-logout" class="btn btn-danger btn-sm">Logout</button>
+                </div>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="admin-tabs">
+                <button class="admin-tab-btn active" data-tab="tab-overview">Overview KPIs</button>
+                <button class="admin-tab-btn" data-tab="tab-products">Product Catalog CRUD</button>
+                <button class="admin-tab-btn" data-tab="tab-inventory">Stock & Inventory</button>
+                <button class="admin-tab-btn" data-tab="tab-orders">Customer Orders</button>
+                <button class="admin-tab-btn" data-tab="tab-dsa">DSA & BST Analysis</button>
+            </div>
+
+            <!-- Tab 1: Overview KPIs -->
+            <div id="tab-overview" class="admin-tab-content active">
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-title">Total Products</div>
+                        <div class="kpi-value" id="kpi-products">0</div>
+                        <div class="kpi-meta">Catalog items in MySQL</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-title">Total Orders</div>
+                        <div class="kpi-value" id="kpi-orders">0</div>
+                        <div class="kpi-meta">Completed transactions</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-title">Gross Revenue</div>
+                        <div class="kpi-value" id="kpi-revenue" style="color: var(--status-success);">₱0.00</div>
+                        <div class="kpi-meta">Cumulative purchases</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-title">Low Stock Alert</div>
+                        <div class="kpi-value" id="kpi-low-stock" style="color: var(--status-warning);">0</div>
+                        <div class="kpi-meta">Items with stock &le; 5 units</div>
+                    </div>
+                </div>
+
+                <h3>Recent Completed Orders</h3>
+                <div class="table-responsive" style="margin-top: 1rem;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Items</th>
+                                <th>Total Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-orders-tbody">
+                            <!-- Populated by admin.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tab 2: Product Management CRUD -->
+            <div id="tab-products" class="admin-tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                    <h3>All Registered Products</h3>
+                    <button id="btn-open-add-product" class="btn btn-primary btn-sm">+ Add New Product</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-products-tbody">
+                            <!-- Populated by admin.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tab 3: Stock & Inventory Management -->
+            <div id="tab-inventory" class="admin-tab-content">
+                <div style="margin-bottom: 1.25rem;">
+                    <h3>Inventory Levels & Quick Adjustment</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Monitor stock health and adjust quantities directly.</p>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product Name</th>
+                                <th>Current Stock</th>
+                                <th>Status</th>
+                                <th>Update Stock Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-inventory-tbody">
+                            <!-- Populated by admin.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tab 4: Customer Orders -->
+            <div id="tab-orders" class="admin-tab-content">
+                <div style="margin-bottom: 1.25rem;">
+                    <h3>Complete Customer Transaction History</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">View itemized customer purchase records and transaction audit trails.</p>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date</th>
+                                <th>Customer Name</th>
+                                <th>Email</th>
+                                <th>Items</th>
+                                <th>Total Paid</th>
+                                <th>Status</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="all-orders-tbody">
+                            <!-- Populated by admin.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tab 5: DSA Visualizer & BST Traversals -->
+            <div id="tab-dsa" class="admin-tab-content">
+                <div class="dsa-visualizer-card">
+                    <h3>Binary Search Tree (BST) Index Traversals</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                        View how the active inventory is hierarchical indexed by Product ID in our custom Binary Search Tree.
+                    </p>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                        <button class="btn btn-secondary btn-sm bst-view-btn active" data-traversal="inorder">Inorder (Sorted by ID)</button>
+                        <button class="btn btn-secondary btn-sm bst-view-btn" data-traversal="preorder">Preorder (Root First)</button>
+                        <button class="btn btn-secondary btn-sm bst-view-btn" data-traversal="postorder">Postorder (Bottom Up)</button>
+                    </div>
+                    <div class="traversal-box" id="bst-traversal-output">Loading BST index...</div>
+                </div>
+
+                <div class="dsa-visualizer-card">
+                    <h3>Sorting Algorithms Benchmark (Live Comparison)</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                        Runs Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, and Quick Sort on the current catalog simultaneously.
+                    </p>
+                    <button id="btn-run-sort-benchmark" class="btn btn-primary btn-sm" style="margin-bottom: 1rem;">Run All 5 Algorithms Benchmark</button>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Algorithm</th>
+                                    <th>Classification</th>
+                                    <th>Theoretical Complexity</th>
+                                    <th>Comparisons</th>
+                                    <th>Swaps / Moves</th>
+                                    <th>Execution Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sort-benchmark-tbody">
+                                <tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Click "Run All 5 Algorithms Benchmark" to measure.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Product CRUD Modal -->
+    <div id="product-modal" class="modal-backdrop">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="product-modal-title">Add New Product</h3>
+                <button class="modal-close" id="btn-close-prod-modal">&times;</button>
+            </div>
+            <form id="product-form">
+                <div class="modal-body">
+                    <input type="hidden" id="edit-prod-id" value="">
+                    <div class="form-group">
+                        <label for="prod-name">Product Name *</label>
+                        <input type="text" id="prod-name" class="form-control" placeholder="e.g. High-Power LED Bar" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="prod-category">Category *</label>
+                        <select id="prod-category" class="form-control" required>
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="prod-price">Price (PHP) *</label>
+                            <input type="number" id="prod-price" class="form-control" placeholder="1500.00" min="1" step="0.5" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prod-stock">Stock Quantity *</label>
+                            <input type="number" id="prod-stock" class="form-control" placeholder="10" min="0" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="prod-desc">Description</label>
+                        <textarea id="prod-desc" class="form-control" rows="3" placeholder="Detailed product specifications..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-prod-modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="btn-save-prod">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Items Detail Modal -->
+    <div id="order-detail-modal" class="modal-backdrop">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="order-modal-title">Order # Details</h3>
+                <button class="modal-close" id="btn-close-order-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="order-modal-body">
+                <!-- Populated dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btn-dismiss-order-modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container"></div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>AUTO GEAR &copy; 2026 &mdash; Administrator Management & Audit Console.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
