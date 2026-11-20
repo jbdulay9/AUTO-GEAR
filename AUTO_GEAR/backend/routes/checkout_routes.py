@@ -1,8 +1,3 @@
-"""
-Flask Blueprint for Checkout and Order Processing REST Endpoints.
-Guarantees ACID transactional consistency for order placement and inventory deduction.
-"""
-
 from decimal import Decimal
 from flask import Blueprint, jsonify, request, session
 from backend.database.connection import get_connection

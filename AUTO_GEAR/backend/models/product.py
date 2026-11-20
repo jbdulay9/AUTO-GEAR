@@ -1,16 +1,3 @@
-"""
-Product and Inventory OOP Domain Models for AUTO GEAR.
-Encapsulates Category, Product, Inventory, and ProductService,
-seamlessly integrated with custom Data Structures and Algorithms:
-- SinglyLinkedList for sequential in-memory storage
-- BinarySearchTree for hierarchical indexing and fast ID lookup
-- Sorting algorithms for product organization
-- Searching algorithms for catalog lookups
-- Backtracking for bundle combinations
-- Greedy & Dynamic Programming for budget recommendations
-- Graph & Dijkstra for simulated store navigation
-"""
-
 from decimal import Decimal
 from typing import Any, Dict, List, Optional
 from backend.database.connection import get_db_manager, DatabaseManager

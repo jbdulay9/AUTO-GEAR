@@ -1,8 +1,3 @@
-"""
-Data Structures and Algorithms package for AUTO GEAR.
-Exports all 9 manual algorithm implementations and data structures.
-"""
-
 from backend.dsa.linked_list import Node, SinglyLinkedList
 from backend.dsa.doubly_linked_list import DoubleNode, DoublyLinkedList
 from backend.dsa.binary_search import linear_search, binary_search, compare_searches

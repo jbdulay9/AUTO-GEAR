@@ -1,8 +1,3 @@
-"""
-Flask Blueprint for Administrator Dashboard and Management REST Endpoints.
-Protects administrative operations with server-side authentication and session checks.
-"""
-
 from functools import wraps
 from flask import Blueprint, jsonify, request, session
 from werkzeug.security import check_password_hash

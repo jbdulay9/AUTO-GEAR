@@ -1,8 +1,3 @@
-/**
- * AUTO GEAR - Administrator Console Client Script
- * Handles Admin Authentication, Product CRUD, Low-Stock Inventory Management, Order Auditing, and DSA Visualizer.
- */
-
 document.addEventListener("DOMContentLoaded", () => {
     checkAdminSession();
 

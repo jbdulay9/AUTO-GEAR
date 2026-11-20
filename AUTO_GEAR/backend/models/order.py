@@ -1,8 +1,3 @@
-"""
-Order and Receipt Domain Models for AUTO GEAR.
-Encapsulates Order, OrderItem, and digital Receipt generation.
-"""
-
 from datetime import datetime
 from decimal import Decimal
 from typing import Any, Dict, List, Optional

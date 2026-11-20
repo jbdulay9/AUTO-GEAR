@@ -1,14 +1,3 @@
-"""
-Flask Blueprint for Data Structures and Algorithms REST Endpoints.
-Exposes endpoints for:
-1. Linear Search vs Binary Search comparison
-2. Sorting algorithms benchmark and execution
-3. Binary Search Tree (BST) traversals
-4. Backtracking Accessory Bundle Builder
-5. Greedy vs Dynamic Programming recommendations
-6. Graph exploration (BFS, DFS) and Dijkstra's Shortest Path store navigation
-"""
-
 from flask import Blueprint, jsonify, request
 from backend.models.product import ProductService
 

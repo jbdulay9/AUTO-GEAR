@@ -1,7 +1,3 @@
-/**
- * AUTO GEAR - Global Client Script & Homepage DSA Showcase
- */
-
 // Shared Helper: Currency Formatter
 function formatPHP(amount) {
     return '₱' + Number(amount || 0).toLocaleString('en-US', {

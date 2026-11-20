@@ -1,14 +1,3 @@
-"""
-Dynamic Programming Implementation for AUTO GEAR.
-Applies the 0/1 Knapsack Problem for globally optimal budget-based product selection.
-
-Guarantees finding the exact subset of automotive accessories that maximizes
-cumulative recommendation value without exceeding the customer's budget limit.
-
-Time Complexity: O(n * W) where n is number of eligible products and W is the scaled budget.
-Space Complexity: O(n * W) for the 2D tabulation matrix.
-"""
-
 from typing import Any, Dict, List
 
 

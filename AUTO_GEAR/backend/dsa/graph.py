@@ -1,17 +1,3 @@
-"""
-Graph Representation and Dijkstra's Shortest Path Algorithm for AUTO GEAR.
-Models the simulated physical store layout, retail aisles, and product locations.
-
-Vertices: Store locations/aisles (Entrance, Audio, Lighting, Accessories, Security, Exterior, Air Freshener, Cashier).
-Edges: Inter-aisle store walkways.
-Weights: Walking distance in meters.
-
-Time Complexities:
-- BFS / DFS Traversal: O(V + E)
-- Dijkstra's Shortest Path: O((V + E) log V) using min-priority heap
-Space Complexity: O(V + E)
-"""
-
 import heapq
 from collections import deque
 from typing import Any, Dict, List, Optional, Set, Tuple

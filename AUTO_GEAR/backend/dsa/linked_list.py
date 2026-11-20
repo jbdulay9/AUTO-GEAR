@@ -1,16 +1,3 @@
-"""
-Singly Linked List Implementation for AUTO GEAR.
-Used for in-memory sequential product inventory storage.
-
-Time Complexities:
-- Insert at Head: O(1)
-- Insert at Tail: O(n) or O(1) with tail pointer
-- Deletion: O(n)
-- Search: O(n)
-- Traversal: O(n)
-Space Complexity: O(n) where n is the number of nodes.
-"""
-
 from typing import Any, Callable, Generator, List, Optional
 
 

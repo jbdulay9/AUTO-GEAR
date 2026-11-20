@@ -1,16 +1,3 @@
-"""
-Backtracking Algorithm Implementation for AUTO GEAR.
-Used for the Automotive Accessory Bundle Builder.
-
-Explores valid combinations of products satisfying customer constraints
-(such as selecting items across specified categories under a budget limit).
-Prunes suboptimal/invalid branches immediately to avoid exhaustive brute-force search.
-
-Time Complexity: Worst O(k^m) where m is number of categories and k is average items per category,
-pruned effectively by budget constraints.
-Space Complexity: O(m) recursion stack depth.
-"""
-
 from typing import Any, Dict, List
 
 

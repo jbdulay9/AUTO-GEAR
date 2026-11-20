@@ -1,12 +1,3 @@
-"""
-Searching Algorithms Implementation for AUTO GEAR.
-Provides Linear Search and Binary Search for product catalog retrieval.
-
-Time Complexities:
-- Linear Search: Best O(1), Average O(n), Worst O(n). Space: O(1)
-- Binary Search: Best O(1), Average O(log n), Worst O(log n). Space: O(1) (iterative)
-"""
-
 import time
 from typing import Any, Callable, Dict, List, Optional, Tuple
 

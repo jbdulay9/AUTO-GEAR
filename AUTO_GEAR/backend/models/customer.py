@@ -1,8 +1,3 @@
-"""
-Customer Domain Model for AUTO GEAR.
-Encapsulates customer information, validation, and database operations.
-"""
-
 from typing import Optional
 from backend.database.connection import get_db_manager, DatabaseManager
 

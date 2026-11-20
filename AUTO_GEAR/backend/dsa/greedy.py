@@ -1,24 +1,3 @@
-"""
-Greedy Algorithm Implementation for AUTO GEAR.
-Used for Smart Budget-Based Product Recommendations.
-
-Greedy Strategy:
-- Calculates a recommendation priority ratio: density = value / price.
-  (where value can represent product rating, popularity, or base satisfaction score).
-- Sorts candidates descending by density.
-- Greedily selects the best available candidate that fits the remaining budget.
-- Repeats until no further products can be added.
-
-Limitations of Greedy:
-- Makes locally optimal decisions at each step.
-- Since products cannot be fractionally divided (0/1 constraint), the greedy choice
-  may leave unused budget that could have accommodated items with higher cumulative value.
-- Compare with Dynamic Programming for global optimum!
-
-Time Complexity: O(n log n) due to initial sorting of n candidate products.
-Space Complexity: O(n) to store candidates and recommendations.
-"""
-
 from typing import Any, Callable, Dict, List
 
 

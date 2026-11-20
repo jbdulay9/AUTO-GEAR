@@ -1,8 +1,3 @@
-"""
-Flask Blueprint for Shopping Cart REST Endpoints.
-Integrates custom DoublyLinkedList from Phase 3 for bidirectional in-memory cart operations.
-"""
-
 from flask import Blueprint, jsonify, request, session
 from backend.dsa.doubly_linked_list import DoublyLinkedList
 from backend.database.connection import fetch_one

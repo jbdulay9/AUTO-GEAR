@@ -1,8 +1,3 @@
-/**
- * AUTO GEAR - Product Catalog Client Script
- * Handles real-time search, sorting with 5 manual algorithms, and category filters.
- */
-
 let allProducts = [];
 let currentCategory = "";
 

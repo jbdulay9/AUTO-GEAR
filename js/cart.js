@@ -1,8 +1,3 @@
-/**
- * AUTO GEAR - Cart and Checkout Client Script
- * Manages Doubly Linked List shopping cart, line-item adjustments, and ACID checkout.
- */
-
 document.addEventListener("DOMContentLoaded", () => {
     updateCartBadge();
 

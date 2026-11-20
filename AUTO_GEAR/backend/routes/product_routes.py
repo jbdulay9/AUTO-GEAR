@@ -1,10 +1,3 @@
-"""
-Flask Blueprint for Product Catalog and Management REST Endpoints.
-"""
-
-from flask import Blueprint, jsonify, request
-from backend.models.product import ProductService
-
 product_bp = Blueprint("products", __name__)
 _product_service = None
 

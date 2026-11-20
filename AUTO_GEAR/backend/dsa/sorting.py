@@ -1,11 +1,3 @@
-"""
-Sorting Algorithms Implementation for AUTO GEAR.
-Includes Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, and Quick Sort.
-
-All algorithms are implemented manually in Python without using Python's built-in sort().
-Each algorithm records comparisons, swaps/moves, and execution time for analysis.
-"""
-
 import time
 from typing import Any, Callable, Dict, List, Tuple
 

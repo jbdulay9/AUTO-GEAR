@@ -1,16 +1,3 @@
-"""
-Doubly Linked List Implementation for AUTO GEAR.
-Used for Shopping Cart management to allow forward and backward navigation,
-efficient appending, and item removal.
-
-Time Complexities:
-- Prepend: O(1)
-- Append: O(1)
-- Remove node: O(1) given node reference, or O(n) given predicate search
-- Traversal (Forward/Backward): O(n)
-Space Complexity: O(n)
-"""
-
 from typing import Any, Callable, Generator, List, Optional
 
 

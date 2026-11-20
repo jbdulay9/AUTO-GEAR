@@ -11,6 +11,8 @@ ENV/
 
 # Environment variables & sensitive credentials
 .env
+.env.*
+!.env.example
 
 # Editor and IDE metadata
 .vscode/
