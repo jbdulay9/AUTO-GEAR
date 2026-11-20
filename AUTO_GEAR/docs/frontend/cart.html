@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | AUTO GEAR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/products.css">
+    <style>
+        .cart-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        @media (max-width: 850px) {
+            .cart-layout { grid-template-columns: 1fr; }
+        }
+        .cart-table-wrapper {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .cart-table th, .cart-table td {
+            padding: 1.1rem 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .cart-table th {
+            background-color: var(--bg-card);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .summary-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.75rem;
+            position: sticky;
+            top: 90px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.85rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .summary-total {
+            border-top: 2px solid var(--border-color);
+            padding-top: 1rem;
+            margin-top: 1rem;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #fff;
+        }
+        .qty-controls {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--bg-input);
+        }
+        .qty-btn {
+            background: transparent;
+            border: none;
+            color: #fff;
+            padding: 0.35rem 0.65rem;
+            cursor: pointer;
+            font-weight: 800;
+        }
+        .qty-btn:hover { background-color: var(--bg-hover); }
+        .qty-display {
+            padding: 0.35rem 0.65rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            min-width: 32px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><span class="logo-accent">AUTO</span> GEAR</a>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="products.html" class="nav-link">Catalog</a>
+                <a href="cart.html" class="nav-link active">Cart <span id="cart-badge" class="cart-pill">0</span></a>
+                <a href="checkout.html" class="nav-link">Checkout</a>
+                <a href="admin.html" class="nav-link">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+            <div>
+                <h1 style="font-size: 1.85rem; font-weight: 800;">Shopping Cart</h1>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Organized via custom Doubly Linked List with bidirectional traversal and live stock validation.</p>
+            </div>
+            <button id="btn-clear-cart" class="btn btn-secondary btn-sm">Clear Cart</button>
+        </div>
+
+        <div id="cart-layout-container" class="cart-layout">
+            <!-- Left: Items Table -->
+            <div class="cart-table-wrapper">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Unit Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-tbody">
+                        <!-- Populated by cart.js -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Right: Order Summary -->
+            <div>
+                <div class="summary-card">
+                    <h3 style="margin-bottom: 1.25rem;">Order Summary</h3>
+                    <div class="summary-row">
+                        <span>Items Total:</span>
+                        <span id="summary-subtotal">₱0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Standard Handling:</span>
+                        <span style="color: var(--status-success);">FREE</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax Included:</span>
+                        <span>₱0.00</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Grand Total:</span>
+                        <span id="summary-total" style="color: var(--accent-primary);">₱0.00</span>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                        <a href="checkout.html" id="btn-proceed-checkout" class="btn btn-primary" style="width: 100%;">Proceed to Checkout &rarr;</a>
+                        <a href="products.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Continue Shopping</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty Cart Display -->
+        <div id="empty-cart-state" class="empty-state" style="display: none; margin-top: 2rem;">
+            <div class="empty-state-icon">&#128722;</div>
+            <h2>Your shopping cart is empty</h2>
+            <p style="color: var(--text-secondary); margin: 0.75rem auto 1.5rem; max-width: 450px;">
+                Explore our catalog to find high-performance audio, lighting, alarms, and automotive accessories.
+            </p>
+            <a href="products.html" class="btn btn-primary">Browse Catalog</a>
+        </div>
+    </main>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container"></div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>AUTO GEAR &copy; 2026 &mdash; High Performance Automotive Retail & POS System.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>
