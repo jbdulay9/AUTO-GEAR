@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTO GEAR | Automotive Accessories & POS System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/products.css">
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><span class="logo-accent">AUTO</span> GEAR</a>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="products.html" class="nav-link">Catalog</a>
+                <a href="cart.html" class="nav-link">Cart <span id="cart-badge" class="cart-pill">0</span></a>
+                <a href="checkout.html" class="nav-link">Checkout</a>
+                <a href="admin.html" class="nav-link">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <span class="badge phase-badge">Full-Stack Production System</span>
+            <h1>Engineered for Performance & Precision</h1>
+            <p>Full-stack web automotive accessories inventory and POS platform, powered by Python Flask, MySQL persistence, and native Data Structures & Algorithms.</p>
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="products.html" class="btn btn-primary">Browse Accessories</a>
+                <a href="#dsa-showcase" class="btn btn-secondary">Interactive DSA Tools</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <main class="container main-content">
+        <!-- Featured Accessories Section -->
+        <section style="margin-bottom: 3.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem;">
+                <div>
+                    <h2 style="font-size: 1.6rem; font-weight: 800;">Featured Accessories</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">High-demand automotive upgrades directly from our MySQL inventory</p>
+                </div>
+                <a href="products.html" class="btn btn-secondary btn-sm">View All Catalog &rarr;</a>
+            </div>
+            <div id="featured-products-grid" class="products-grid">
+                <!-- Loaded dynamically by app.js -->
+                <div class="empty-state">
+                    <div class="empty-state-icon">&#9881;</div>
+                    <h3>Loading catalog products...</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive DSA Showcase Section -->
+        <section id="dsa-showcase" style="margin-bottom: 3.5rem;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="badge phase-badge">Algorithm Demonstration</span>
+                <h2 style="font-size: 1.85rem; font-weight: 800; margin-top: 0.5rem;">Algorithmic Engine in Action</h2>
+                <p style="color: var(--text-secondary); max-width: 700px; margin: 0 auto;">Experience our genuine Python Data Structures and Algorithms powering practical e-commerce features.</p>
+            </div>
+
+            <!-- Tabbed DSA Panels -->
+            <div class="card" style="padding: 1.75rem;">
+                <!-- DSA Tabs -->
+                <div style="display: flex; gap: 0.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                    <button class="pill-btn active dsa-tab-btn" data-target="panel-bundles">1. Bundle Builder (Backtracking)</button>
+                    <button class="pill-btn dsa-tab-btn" data-target="panel-recommend">2. Budget Optimizer (Greedy vs DP)</button>
+                    <button class="pill-btn dsa-tab-btn" data-target="panel-navigation">3. Store Navigation (Dijkstra)</button>
+                </div>
+
+                <!-- Panel 1: Backtracking Bundle Builder -->
+                <div id="panel-bundles" class="dsa-panel">
+                    <h3 style="margin-bottom: 0.5rem;">Accessory Bundle Builder (Recursive Backtracking)</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;">
+                        Select categories and specify your budget. The algorithm recursively explores valid combinations and prunes branches exceeding your limit.
+                    </p>
+                    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.25rem;">
+                        <div class="form-group" style="flex: 1; min-width: 200px;">
+                            <label>Budget Limit (PHP):</label>
+                            <input type="number" id="bundle-budget" class="form-control" value="15000" min="1000" step="500">
+                        </div>
+                        <div class="form-group" style="flex: 2; min-width: 250px;">
+                            <label>Required Bundle Categories:</label>
+                            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.35rem;">
+                                <label style="font-size: 0.85rem; text-transform: none; display: flex; align-items: center; gap: 4px;">
+                                    <input type="checkbox" class="bundle-cat" value="Audio" checked> Audio
+                                </label>
+                                <label style="font-size: 0.85rem; text-transform: none; display: flex; align-items: center; gap: 4px;">
+                                    <input type="checkbox" class="bundle-cat" value="Lighting" checked> Lighting
+                                </label>
+                                <label style="font-size: 0.85rem; text-transform: none; display: flex; align-items: center; gap: 4px;">
+                                    <input type="checkbox" class="bundle-cat" value="Security" checked> Security
+                                </label>
+                                <label style="font-size: 0.85rem; text-transform: none; display: flex; align-items: center; gap: 4px;">
+                                    <input type="checkbox" class="bundle-cat" value="Accessories"> Accessories
+                                </label>
+                            </div>
+                        </div>
+                        <div style="align-self: flex-end; margin-bottom: 1.25rem;">
+                            <button id="btn-build-bundles" class="btn btn-primary">Find Valid Bundles</button>
+                        </div>
+                    </div>
+                    <div id="bundle-results" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem;">
+                        <!-- Results dynamically inserted -->
+                    </div>
+                </div>
+
+                <!-- Panel 2: Budget Recommender (Greedy vs DP) -->
+                <div id="panel-recommend" class="dsa-panel" style="display: none;">
+                    <h3 style="margin-bottom: 0.5rem;">Smart Budget Allocation (Greedy vs. 0/1 Knapsack DP)</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;">
+                        Compare the greedy value-to-price ratio heuristic against the mathematically optimal 0/1 Knapsack dynamic programming tabulation.
+                    </p>
+                    <div style="display: flex; gap: 1rem; align-items: flex-end; margin-bottom: 1.25rem; flex-wrap: wrap;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label>Spending Budget (PHP):</label>
+                            <input type="number" id="recommend-budget" class="form-control" value="10000" min="500" step="500">
+                        </div>
+                        <button id="btn-run-recommend" class="btn btn-primary">Compare Algorithms</button>
+                    </div>
+                    <div id="recommend-results" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <!-- Results dynamically inserted -->
+                    </div>
+                </div>
+
+                <!-- Panel 3: Store Layout Navigation (Dijkstra) -->
+                <div id="panel-navigation" class="dsa-panel" style="display: none;">
+                    <h3 style="margin-bottom: 0.5rem;">Simulated Store Navigation (Dijkstra's Shortest Path)</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;">
+                        Graph representation of our retail floor plan with retail aisles as vertices and walking distances as weighted edges.
+                    </p>
+                    <div style="display: flex; gap: 1rem; align-items: flex-end; margin-bottom: 1.25rem; flex-wrap: wrap;">
+                        <div class="form-group" style="margin-bottom: 0; min-width: 180px;">
+                            <label>Starting Point:</label>
+                            <select id="nav-start" class="select-control" style="width: 100%;">
+                                <option value="ENTRANCE" selected>Store Entrance</option>
+                                <option value="CUSTOMER_SERVICE">Customer Service</option>
+                                <option value="AISLE_AUDIO">Audio Aisle</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0; min-width: 180px;">
+                            <label>Destination Aisle:</label>
+                            <select id="nav-dest" class="select-control" style="width: 100%;">
+                                <option value="AISLE_SECURITY">Security Aisle</option>
+                                <option value="AISLE_AUDIO">Audio Aisle</option>
+                                <option value="AISLE_LIGHTING">Lighting Aisle</option>
+                                <option value="AISLE_ACCESSORIES">Accessories Section</option>
+                                <option value="AISLE_EXTERIOR">Exterior Shelf</option>
+                                <option value="AISLE_AIR_FRESHENER">Air Freshener Display</option>
+                                <option value="CASHIER" selected>Checkout Counter</option>
+                            </select>
+                        </div>
+                        <button id="btn-run-nav" class="btn btn-primary">Calculate Route</button>
+                    </div>
+                    <div id="nav-results" class="card" style="padding: 1.25rem; background-color: var(--bg-card);">
+                        <!-- Results dynamically inserted -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container"></div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>AUTO GEAR &copy; 2026 &mdash; High Performance Automotive Retail & POS System.</p>
+            <p>Powered by Python Flask, MySQL, and Native DSA Implementations.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

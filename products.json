@@ -1,0 +1,72 @@
+[
+    {
+        "product_id": 1,
+        "name": "Speakers",
+        "category": "Audio",
+        "price": 4500,
+        "stock": 15
+    },
+    {
+        "product_id": 2,
+        "name": "Amplifiers",
+        "category": "Audio",
+        "price": 8500,
+        "stock": 10
+    },
+    {
+        "product_id": 3,
+        "name": "LED Lights",
+        "category": "Lighting",
+        "price": 2800,
+        "stock": 20
+    },
+    {
+        "product_id": 4,
+        "name": "LED Bulbs",
+        "category": "Lighting",
+        "price": 1200,
+        "stock": 25
+    },
+    {
+        "product_id": 5,
+        "name": "Car Horns",
+        "category": "Accessories",
+        "price": 1800,
+        "stock": 15
+    },
+    {
+        "product_id": 6,
+        "name": "Car Security Systems (Alarm)",
+        "category": "Security",
+        "price": 6500,
+        "stock": 8
+    },
+    {
+        "product_id": 7,
+        "name": "Rain Visors",
+        "category": "Exterior",
+        "price": 2200,
+        "stock": 20
+    },
+    {
+        "product_id": 8,
+        "name": "Paradise Air - Cherry",
+        "category": "Air Freshener",
+        "price": 350,
+        "stock": 30
+    },
+    {
+        "product_id": 9,
+        "name": "Paradise Air - Vanilla",
+        "category": "Air Freshener",
+        "price": 350,
+        "stock": 30
+    },
+    {
+        "product_id": 10,
+        "name": "Paradise Air - Sandalwood",
+        "category": "Air Freshener",
+        "price": 350,
+        "stock": 30
+    }
+]

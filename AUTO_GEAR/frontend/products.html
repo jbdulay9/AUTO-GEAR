@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog | AUTO GEAR Automotive Accessories</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/products.css">
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html"><span class="logo-accent">AUTO</span> GEAR</a>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="products.html" class="nav-link active">Catalog</a>
+                <a href="cart.html" class="nav-link">Cart <span id="cart-badge" class="cart-pill">0</span></a>
+                <a href="checkout.html" class="nav-link">Checkout</a>
+                <a href="admin.html" class="nav-link">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <div class="catalog-header">
+            <h1>Automotive Accessories Catalog</h1>
+            <p>Browse, search, and sort high-quality automotive components powered by MySQL and custom Python algorithms.</p>
+        </div>
+
+        <!-- Controls: Search, Sort, Categories -->
+        <section class="catalog-controls">
+            <!-- Search & Sort Row -->
+            <div class="search-filter-row">
+                <div class="search-box">
+                    <span class="search-icon">&#128269;</span>
+                    <input type="text" id="catalog-search" placeholder="Search by name or product ID (Linear / Binary)...">
+                </div>
+
+                <div class="sort-controls">
+                    <select id="sort-attribute" class="select-control" title="Sort Attribute">
+                        <option value="price">Sort by Price</option>
+                        <option value="stock">Sort by Stock</option>
+                        <option value="product_name">Sort by Name</option>
+                        <option value="product_id">Sort by ID</option>
+                    </select>
+
+                    <select id="sort-algorithm" class="select-control" title="Manual Algorithm Selection">
+                        <option value="quick" selected>Quick Sort O(n log n)</option>
+                        <option value="merge">Merge Sort O(n log n)</option>
+                        <option value="insertion">Insertion Sort O(n²)</option>
+                        <option value="selection">Selection Sort O(n²)</option>
+                        <option value="bubble">Bubble Sort O(n²)</option>
+                        <option value="all">Benchmark All 5 Sorts</option>
+                    </select>
+
+                    <select id="sort-order" class="select-control" title="Sort Order">
+                        <option value="asc">Ascending &uarr;</option>
+                        <option value="desc">Descending &darr;</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Category Pills Row -->
+            <div class="category-pills" id="category-pills-container">
+                <button class="pill-btn active" data-category="">All Categories</button>
+                <!-- Populated dynamically -->
+            </div>
+        </section>
+
+        <!-- Dynamic Algorithm Performance Banner -->
+        <div id="algorithm-metric-banner" class="algorithm-metric-banner" style="display: none;">
+            <div id="metric-text">Algorithm: Quick Sort | Comparisons: 0 | Execution Time: 0.00 ms</div>
+            <button id="metric-dismiss" style="background: none; border: none; color: inherit; cursor: pointer; font-size: 1.1rem;">&times;</button>
+        </div>
+
+        <!-- Products Grid -->
+        <section id="products-grid" class="products-grid">
+            <div class="empty-state">
+                <div class="empty-state-icon">&#9881;</div>
+                <h3>Loading accessories...</h3>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container"></div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>AUTO GEAR &copy; 2026 &mdash; Built with Python Flask, MySQL, and Modern Web Standards.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/products.js"></script>
+</body>
+</html>
